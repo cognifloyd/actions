@@ -12,8 +12,9 @@ runs:
   steps:
     - name: Expose Pythons
       run: |
-        if [[ -x 'C:\' ]]; then
-          toolcache="C:\hostedtoolcache\windows"
+        if [[ -x 'C:/' ]]; then
+          # yes this does use / on windows and bash translates for us
+          toolcache="C:/hostedtoolcache/windows"
         elif [[ "$(uname -s)" == "Darwin" ]]; then
           toolcache="/Users/runner/hostedtoolcache"
         else
