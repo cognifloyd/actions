@@ -12,9 +12,9 @@ runs:
   steps:
     - name: Expose Pythons
       run: |
-        if [[ -x 'C:/' ]]; then
-          # yes this does use / on windows and bash translates for us
-          toolcache="C:/hostedtoolcache/windows"
+        if [[ -x 'C:\' ]]; then
+          # git bash on GHA is a mingw build so use /c/ instead of c:\
+          toolcache="/c/hostedtoolcache/windows"
           py_bin=""
           py_exe="python.exe"
           # NOTE: lib dir might need to be /Libs instead of /lib
