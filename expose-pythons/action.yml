@@ -12,7 +12,9 @@ runs:
   steps:
     - name: Expose Pythons
       run: |
-        if [[ "$(uname -s)" == "Darwin" ]]; then
+        if [[ -x 'C:\' ]]; then
+          toolcache="C:\hostedtoolcache\windows"
+        elif [[ "$(uname -s)" == "Darwin" ]]; then
           toolcache="/Users/runner/hostedtoolcache"
         else
           toolcache="/opt/hostedtoolcache"
