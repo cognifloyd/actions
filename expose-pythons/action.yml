@@ -17,17 +17,15 @@ runs:
           toolcache="C:/hostedtoolcache/windows"
           py_bin=""
           py_exe="python.exe"
-          py_lib="/Libs"
+          # NOTE: lib dir might need to be /Libs instead of /lib
         elif [[ "$(uname -s)" == "Darwin" ]]; then
           toolcache="/Users/runner/hostedtoolcache"
           py_bin="/bin"
           py_exe="python"
-          py_lib="/lib"
         else
           toolcache="/opt/hostedtoolcache"
           py_bin="/bin"
           py_exe="python"
-          py_lib="/lib"
         fi
 
         echo "::group::Exposing Pythons"
@@ -43,11 +41,7 @@ runs:
             echo "Exposing ${python_bin_dir}: $("${python_exe}" --version 2>&1)"
             PATH="${PATH}:${python_bin_dir}"
 
-            python_lib_dir="${python_location}${py_lib}"
-            echo "${python_location}/lib"
-            ls "${python_location}/lib"
-            echo "${python_lib_dir}"
-            ls "${python_lib_dir}"
+            python_lib_dir="${python_location}/lib"
             LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${python_lib_dir}"
           fi
         done
